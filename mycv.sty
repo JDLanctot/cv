@@ -1,5 +1,6 @@
 
 \usepackage[T1]{fontenc}
+\usepackage{amsmath}
 
 \usepackage{fontawesome}
 \usepackage{hyperref}
@@ -22,18 +23,18 @@
 \usetikzlibrary{shapes.misc,positioning}
 \usetikzlibrary{arrows}
 \usetikzlibrary{arrows.meta}
-\usetikzlibrary{backgrounds} 
+\usetikzlibrary{backgrounds}
 \usetikzlibrary{shadings}
-\usetikzlibrary{calendar} 
+\usetikzlibrary{calendar}
 \usetikzlibrary{er}
 \usetikzlibrary{patterns} % horizontal lines, vertical lines, north east lines, north west lines, grid, crosshatch, dots, crosshatch dots, fivepointed stars, sixpointed stars, bricks
-\usetikzlibrary{shapes} 
+\usetikzlibrary{shapes}
 \usetikzlibrary{shapes.geometric}
 \usetikzlibrary{decorations}
 \usetikzlibrary{topaths}
 
 \usepackage{graphicx}
-%\usepackage[usenames, dvipsnames]{color} 
+%\usepackage[usenames, dvipsnames]{color}
 % https://de.sharelatex.com/learn/Using_colours_in_LaTeX#!#Reference_guide z.B. \color{RubineRed}
 %\usepackage{xcolor}
 
@@ -46,14 +47,14 @@
 
 % Format of the section titles
 \titleformat{\section}{
-\scshape\Large\raggedright}{}{0em}{}[\color{titlerulecolour}{\titlerule[1.5pt]}] % smallcaps, Large, continuous line - looks better if two columns, might look a bit too dramatic if just one ;) 
+\scshape\Large\raggedright}{}{0em}{}[\color{titlerulecolour}{\titlerule[1.5pt]}] % smallcaps, Large, continuous line - looks better if two columns, might look a bit too dramatic if just one ;)
 \titlespacing{\section}{0pt}{12pt}{8pt} % Spacing around titles {<left spacing>}{<before spacing>}{<after spacing>}
 %----------------------------------------------------
 
  \newcommand{\cvkeyword}[3]{
  \colorbox{#2}{\textcolor{#3}{#1}} \phantom{}%
  }
- 
+
 %------------------------
 \newcommand{\cvtag}[1]{% from alta-cv: https://www.overleaf.com/latex/templates/altacv-template/trgqjpwnmtgv
   \tikz[baseline]\node[draw=black!40,rounded corners,inner sep=0.4em]{\color{black!50}#1};
@@ -72,7 +73,7 @@
 \node[left=0.5em,text=#3] at (-1,0) {#1 #7};%
 \end{tikzpicture}%
 }
- 
+
 
 \usepackage{smartdiagram}
 %-----------------------------------------------------
@@ -129,7 +130,7 @@
 \pgfmathparse{#5 - 1}\foreach \n in {0,...,\pgfmathresult}{\icon{#1}{#4}{#6}}%
 }
 
-%----------------------------------------------------- font highlighting / boxes with background color 
+%----------------------------------------------------- font highlighting / boxes with background color
 
 \newcommand{\bg}[3]{\colorbox{#1}{\bfseries\color{#2}#3}}
 \newcommand{\bgupper}[3]{\colorbox{#1}{\color{#2}\huge\bfseries\MakeUppercase{#3}}}
@@ -215,7 +216,7 @@
 \node[draw=none, align=left] (name) at (header) {%
 {\Huge \color{#2} #4 \textbf{#5} }%
 };%
-\node[draw=none, below, yshift=-0.4cm] (titles) at (name.south) {\color{#2}#6};% 
+\node[draw=none, below, yshift=-0.4cm] (titles) at (name.south) {\color{#2}#6};%
 }\vspace{-0.7cm}%
 }
 
@@ -226,7 +227,7 @@
 \node[draw=none, align=left] (name) at (header) {%
 {\Huge \color{#2} #4 \textbf{#5} }%
 };%
-\node[draw=none, below, yshift=-0.4cm] (titles) at (name.south) {\color{#2}#6};% 
+\node[draw=none, below, yshift=-0.4cm] (titles) at (name.south) {\color{#2}#6};%
 % Draw the separator
 \draw[thick, #3] ($(titles.south west)+(4.4,-0.3)$) -- ($(titles.south east)+(-4.4,-0.3)$);%
 % Add the description
@@ -236,7 +237,7 @@
 }
 
 
-% ----------------------------------------------------------------------------------- ICONS 
+% ----------------------------------------------------------------------------------- ICONS
 
 % ORCid symbol
 \newcommand{\orcidbubble}[4]{%
@@ -244,9 +245,9 @@
 \begin{tikzpicture}
 \draw[#1, fill=#1] (0,0.16) circle (0.2 cm) node[#2] {\fontfamily{qag}\selectfont\tiny iD};
 % Check if the 5th argument is empty
-\ifx&#5&%
-    % If 5th argument is empty, place the 4th as is
-    \node[right=0.2cm, align=left] at (0,0) {\text{#2}};
+\ifx&#4&%
+    % If 4th argument is empty, place the 3rd as is
+    \node[right=0.2cm, align=left] at (0,0) {\text{#3}};
 \else
     % If 4th argument is not empty, place the 3th and then the 4th below it
     \node[right=0.2cm, align=left] at (0,0.15) {\text{#3}};

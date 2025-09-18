@@ -1,0 +1,167 @@
+\ProvidesPackage{myfonts}
+
+\RequirePackage{fontspec}
+\RequirePackage{titlesec}
+
+% First, define the font families without setting them as main font
+\newcommand{\setupFormula}{%
+  \newfontfamily\formulafont{PPFormula}[
+    Path = ./fonts/Formula/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-ExtraBold,
+    ItalicFont = *-RegularItalic,
+    BoldItalicFont = *-ExtraboldItalic
+  ]
+}
+
+\newcommand{\setupFragment}{%
+  \newfontfamily\fragmentfont{PPFragment}[
+    Path = ./fonts/Fragment/,
+    Extension = .ttf,
+    UprightFont = *-GlareRegular,
+    BoldFont = *-GlareBlack,
+    ItalicFont = *-GlareRegularItalic,
+    BoldItalicFont = *-GlareBlackItalic
+  ]
+}
+
+\newcommand{\setupNeueMontreal}{%
+  \newfontfamily\neuemontrealfont{PPNeueMontreal}[
+    Path = ./fonts/Neue Montreal/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic
+  ]
+}
+
+\newcommand{\setupRightSans}{%
+  \newfontfamily\rightsansfont{PPRightSans}[
+    Path = ./fonts/Right Sans/,
+    Extension = .ttf,
+    UprightFont = *-SpatialRegular,
+    BoldFont = *-SpatialBlack,
+    ItalicFont = *-SpatialRegularItalic,
+    BoldItalicFont = *-SpatialBlackItalic
+  ]
+}
+
+\newcommand{\setupTelegraf}{%
+  \newfontfamily\telegrafffont{PPTelegraf}[
+    Path = ./fonts/Telegraf/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-RegularSlanted,
+    BoldItalicFont = *-BoldSlanted
+  ]
+}
+
+% Setup all font families
+\setupFormula
+\setupFragment
+\setupNeueMontreal
+\setupRightSans
+\setupTelegraf
+
+% Define options for primary font (sets main font)
+\DeclareOption{formula}{
+  \setmainfont{PPFormula}[
+    Path = ./fonts/Formula/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-ExtraBold,
+    ItalicFont = *-RegularItalic,
+    BoldItalicFont = *-ExtraboldItalic
+  ]
+}
+
+\DeclareOption{fragment}{
+  \setmainfont{PPFragment}[
+    Path = ./fonts/Fragment/,
+    Extension = .ttf,
+    UprightFont = *-GlareRegular,
+    BoldFont = *-GlareBlack,
+    ItalicFont = *-GlareRegularItalic,
+    BoldItalicFont = *-GlareBlackItalic
+  ]
+}
+
+\DeclareOption{neuemontreal}{
+  \setmainfont{PPNeueMontreal}[
+    Path = ./fonts/Neue Montreal/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic
+  ]
+}
+
+\DeclareOption{rightsans}{
+  \setmainfont{PPRightSans}[
+    Path = ./fonts/Right Sans/,
+    Extension = .ttf,
+    UprightFont = *-SpatialRegular,
+    BoldFont = *-SpatialBlack,
+    ItalicFont = *-SpatialRegularItalic,
+    BoldItalicFont = *-SpatialBlackItalic
+  ]
+}
+
+\DeclareOption{telegraf}{
+  \setmainfont{PPTelegraf}[
+    Path = ./fonts/Telegraf/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-RegularSlanted,
+    BoldItalicFont = *-BoldSlanted
+  ]
+}
+
+% Options for heading font
+\DeclareOption{headings-formula}{
+  \titleformat*{\section}{\Large\formulafont}
+  \titleformat*{\subsection}{\large\formulafont}
+  \titleformat*{\subsubsection}{\normalsize\formulafont}
+}
+
+\DeclareOption{headings-fragment}{
+  \titleformat*{\section}{\Large\fragmentfont}
+  \titleformat*{\subsection}{\large\fragmentfont}
+  \titleformat*{\subsubsection}{\normalsize\fragmentfont}
+}
+
+\DeclareOption{headings-neuemontreal}{
+  \titleformat*{\section}{\Large\neuemontrealfont}
+  \titleformat*{\subsection}{\large\neuemontrealfont}
+  \titleformat*{\subsubsection}{\normalsize\neuemontrealfont}
+}
+
+\DeclareOption{headings-rightsans}{
+  \titleformat*{\section}{\Large\rightsansfont}
+  \titleformat*{\subsection}{\large\rightsansfont}
+  \titleformat*{\subsubsection}{\normalsize\rightsansfont}
+}
+
+\DeclareOption{headings-telegraf}{
+  \titleformat*{\section}{\Large\telegrafffont}
+  \titleformat*{\subsection}{\large\telegrafffont}
+  \titleformat*{\subsubsection}{\normalsize\telegrafffont}
+}
+
+% Default option
+\DeclareOption*{\OptionNotUsed}
+
+% Process the options
+\ProcessOptions\relax
+
+% Define helper commands for font switching
+\newcommand{\formulatext}[1]{{\formulafont #1}}
+\newcommand{\fragmenttext}[1]{{\fragmentfont #1}}
+\newcommand{\neuemontrealtext}[1]{{\neuemontrealfont #1}}
+\newcommand{\rightsanstext}[1]{{\rightsansfont #1}}
+\newcommand{\telegraftext}[1]{{\telegrafffont #1}}

@@ -1,0 +1,458 @@
+% a mashup of hipstercv, friggeri and twenty cv with improved organization
+% https://www.overleaf.com/latex/templates/simple-hipster-cv/cnpkkjdkyhhw
+% https://www.latextemplates.com/template/twenty-seconds-resumecv
+% https://www.latextemplates.com/template/friggeri-resume-cv
+
+\documentclass[jdlanctot]{mycv}
+% \usepackage[utf8]{inputenc}
+% \usepackage[default]{raleway}
+% Native are: formula, fragment, neuemontreal, rightsans, telegraf
+\usepackage[telegraf,headings-telegraf]{fonts/myfonts}
+\usepackage[margin=1cm, a4paper]{geometry}
+
+%------------------------------------------------------------------------------ Variablen
+\newlength{\rightcolwidth}
+\newlength{\leftcolwidth}
+\setlength{\leftcolwidth}{0.25\textwidth}
+\setlength{\rightcolwidth}{0.75\textwidth}
+
+%------------------------------------------------------------------------------ TITLE (DOESNT APPEAR)
+\title{CV}
+\author{\LaTeX{} Jordan Lanctot}
+\date{}
+\pagestyle{empty}
+\begin{document}
+\thispagestyle{empty}
+
+\include{myinfo}
+
+%----------------------------------------------------------------------------------------
+%	Cover Letter Comment out if you want.
+%----------------------------------------------------------------------------------------
+% \section*{Cover Letter}
+% \descriptiveheader{headercolour}{headerfontcolour}{headerbarcolour}{\myFirstName}{\myLastName}{\myRoles}{\myDescription}
+
+% % \include{Cover Letter/coverletterinfo}
+% \vspace{10.0em}
+% \centering
+% \begin{minipage}[t]{\rightcolwidth}
+%     \fontfamily{\sfdefault}\selectfont
+%     \include{Cover Letter/Cover Letter}
+% \end{minipage}
+
+% \vfill{} % Whitespace before final footer
+% \setlength{\parindent}{0pt}
+% \centering
+% \begin{minipage}[t]{\textwidth}
+%     \begin{center}\fontfamily{\sfdefault}\selectfont \color{black!70}
+%     {\small \myName \icon{\faEnvelopeO}{cvblue}{} \myJob \icon{\faMapMarker}{cvblue}{} \myLocation \icon{\faPhone}{cvblue}{} \myNumber \icon{\faAt}{cvblue}{} \protect\url{\myEmail}
+%     }
+%     \end{center}
+% \end{minipage}
+% \newpage
+
+%----------------------------------------------------------------------------------------
+%	PAGE 1 HEADER
+%----------------------------------------------------------------------------------------
+\section*{Page 1}
+
+\descriptiveheader{headercolour}{headerfontcolour}{headerbarcolour}{\myFirstName}{\myLastName}{\myRoles}{\myDescription}
+
+%----------------------------------------------------------------------------- COLUMN DEFINITION
+% this has to be here so the paracols starts..
+\subsection*{}
+\vspace{3.5em}
+
+\setlength{\columnsep}{1.0cm}
+\columnratio{0.25}[0.75]
+\begin{paracol}{2}
+
+%----------------------------------------------------------------------------------------
+%	PAGE 1 SIDE BAR
+%----------------------------------------------------------------------------------------
+\hbadness5000
+%\backgroundcolor{c[1]}[rgb]{1,1,0.8} % cream yellow for column-1 %\backgroundcolor{g}[rgb]{0.8,1,1} % \backgroundcolor{l}[rgb]{0,0,0.7} % dark blue for left margin
+\paracolbackgroundoptions
+% 0.9,0.9,0.9 -- 0.8,0.8,0.8
+
+\footnotesize
+{\setasidefontcolour
+\flushleft
+% ---------------------------------------------- Profile Pic
+% \begin{center}
+%     \roundpic{jack.jpg}
+% \end{center}
+
+% ---------------------------------------------- Socials
+% THESE SOCIALS GET HANDLED WITH THE myinfo.tex, BUT NOT OTHER THINGS IN THE SIDEBAR
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Socials}
+\href{\myEmailHref}{%
+    \infobubble{\faAt}{cvblue}{iconcolour}{\myEmailOne}{\myEmailTwo}
+}\\[0.5em]
+\href{\myTwitterHref}{%
+    \infobubble{\faTwitter}{cvblue}{iconcolour}{\myTwitter}{}
+}\\[0.5em]
+\href{\myLinkedInHref}{%
+    \infobubble{\faLinkedin}{cvblue}{iconcolour}{\myLinkedIn}{}
+}\\[0.5em]
+\href{\myGitHubHref}{%
+    \infobubble{\faGithub}{cvblue}{iconcolour}{\myGitHub}{}
+}
+\end{minipage}\\[1.0em]
+
+% ---------------------------------------------- Publications
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Publications}
+\href{\myGoogleScholarHref}{%
+    \infobubble{\faGoogle}{cvblue}{iconcolour}{\myGoogleScholar}{}
+}\\[0.5em]
+\href{\myOrchidHref}{%
+    \orcidbubble{cvblue}{iconcolour}{\myOrchid}{}
+}
+\end{minipage}\\[-1.0em]
+
+% ---------------------------------------------- Programming Languages
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Programming}
+\begin{tabular}{r @{\hspace{0.5em}}l}
+     \bg{skilllabelcolour}{skilliconcolour}{python} & \barrule{0.5}{0.5em}{cvblue} \\
+     \bg{skilllabelcolour}{skilliconcolour}{\LaTeX} & \barrule{0.48}{0.5em}{cvgrey} \\
+     \bg{skilllabelcolour}{skilliconcolour}{TypeScript} & \barrule{0.45}{0.5em}{cvgrey} \\
+     \bg{skilllabelcolour}{skilliconcolour}{Julia} & \barrule{0.42}{0.5em}{cvgrey} \\
+     \bg{skilllabelcolour}{skilliconcolour}{MATLAB} & \barrule{0.38}{0.5em}{cvgrey} \\
+     \bg{skilllabelcolour}{skilliconcolour}{html, css} &  \barrule{0.36}{0.5em}{cvgrey}\\
+     \bg{skilllabelcolour}{skilliconcolour}{PHP, SQL} & \barrule{0.24}{0.5em}{cvgrey} \\
+     \bg{skilllabelcolour}{skilliconcolour}{Lua} & \barrule{0.16}{0.5em}{cvgrey} \\
+     \bg{skilllabelcolour}{skilliconcolour}{Java} & \barrule{0.1}{0.5em}{cvgrey}
+\end{tabular}
+\end{minipage}\\[1.0em]
+
+% ---------------------------------------------- Languages
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Languages}
+\begin{tabular}{r @{\hspace{0.5em}}l}
+     \bg{skilllabelcolour}{skilliconcolour}{English} &  Native\\
+     \bg{skilllabelcolour}{skilliconcolour}{French} & Fluent
+\end{tabular}
+\end{minipage}\\[1.0em]
+
+% ---------------------------------------------- Education
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Education}
+\begin{tabular}{r p{0.9\textwidth} c}
+    \cvdegreesm{2026}{Physics}{Ph.D.}{In Progress}{Toronto Metropolitan \color{unicolour}}{} \\
+    \cvdegreesm{2022}{Physics}{B.Sc.}{Honours}{Toronto Metropolitan \color{unicolour}}{} \\
+    \cvdegreesm{2015}{Audio Engineering}{Diploma}{}{Recording Arts Canada \color{unicolour}}{} \\
+    % \cvdegreesm{2012}{High School}{Diploma}{French Immersion}{Adam Scott V.I. \color{unicolour}}{} \\
+\end{tabular}
+\end{minipage}
+
+\vspace{1em}
+
+\phantom{turn the page}
+
+\phantom{turn the page}
+}
+%----------------------------------------------------------------------------------------
+%	PAGE 1 MAIN
+%----------------------------------------------------------------------------------------
+\switchcolumn
+\small
+\section*{Work Experience}
+\begin{tabular}{r!{\hspace{2mm}\color{titlerulecolour}\vrule width 1pt\hspace{1mm}} p{0.5\textwidth} c}
+    \include{Jobs/rclub}\\
+    \include{Jobs/TMU Graduate RA}\\
+    \include{Jobs/Dockets Consultant}\vspace{-3em}
+\end{tabular}
+\vspace{1em}
+
+\end{paracol}
+
+%----------------------------------------------------------------------------------------
+%	PAGE 1 FOOTER
+%----------------------------------------------------------------------------------------
+\vfill{} % Whitespace before final footer
+\setlength{\parindent}{0pt}
+\centering
+\begin{minipage}[t]{\textwidth}
+    \begin{center}\fontfamily{\sfdefault}\selectfont \color{black!70}
+    {\small \myName \icon{\faEnvelopeO}{cvblue}{} \myJob \icon{\faMapMarker}{cvblue}{} \myLocation \icon{\faPhone}{cvblue}{} \myNumber \icon{\faAt}{cvblue}{} \protect\url{\myEmail}
+    }
+    \end{center}
+\end{minipage}
+
+%----------------------------------------------------------------------------------------
+%	PAGE 2 HEADER
+%----------------------------------------------------------------------------------------
+\newpage
+\section*{Page 2}
+
+\simpleheader{headercolour}{headerfontcolour}{headerbarcolour}{\myFirstName}{\myLastName}{\myRoles}
+
+%----------------------------------------------------------------------------- COLUMN DEFINITION
+% this has to be here so the paracols starts..
+\subsection*{}
+\vspace{3.5em}
+
+\setlength{\columnsep}{1.0cm}
+\columnratio{0.25}[0.75]
+\begin{paracol}{2}
+
+%----------------------------------------------------------------------------------------
+%	PAGE 2 SIDE BAR
+%----------------------------------------------------------------------------------------
+\flushleft
+\footnotesize
+
+% ---------------------------------------------- Awards
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Supervision}
+\infobubble{\faUsers}{labelcolour}{cvblue}{2 x Summer Research}{Assistant • 2025}
+\infobubble{\faChild}{labelcolour}{cvblue}{Undergraduate Thesis}{Student • 2024-2025}
+\end{minipage}\\[1.0em]
+
+% ---------------------------------------------- Awards
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Awards}
+\infobubble{\faTrophy}{labelcolour}{cvblue}{OGS 2025}{\$15,000}
+\infobubble{\faTrophy}{labelcolour}{cvblue}{Complex Systems Day}{2nd Best Poster}
+\infobubble{\faTrophy}{labelcolour}{cvblue}{Complex Systems Day}{Best Short Talk}
+\infobubble{\faTrophy}{labelcolour}{cvblue}{NSERC 2023}{\$17,500}
+\infobubble{\faTrophy}{labelcolour}{cvblue}{Connections in}{Science • \$1,000}
+\infobubble{\faTrophy}{labelcolour}{cvblue}{NSERC 2021}{\$12,000}
+\infobubble{\faTrophy}{labelcolour}{cvblue}{Dean's List}{2021-2022}
+\infobubble{\faTrophy}{labelcolour}{cvblue}{Dean's List}{2020-2021}
+\infobubble{\faTrophy}{labelcolour}{cvblue}{Dean's List}{2019-2020}
+\infobubble{\faTrophy}{labelcolour}{cvblue}{Polaris Prize}{Long List • 2019}
+\end{minipage}\\[1.0em]
+
+% % ---------------------------------------------- Skills
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Skills}
+\infobubble{\faCheck}{labelcolour}{cvblue}{Artificial}{Intelligence}
+\infobubble{\faCheck}{labelcolour}{cvblue}{Reinforcement}{Learning}
+\infobubble{\faCheck}{labelcolour}{cvblue}{LLM Response}{Sanitation}
+\infobubble{\faCheck}{labelcolour}{cvblue}{Data}{Analytics}
+\infobubble{\faCheck}{labelcolour}{cvblue}{Full-Stack Web}{Development}
+\infobubble{\faCheck}{labelcolour}{cvblue}{Database}{Design}
+% \infobubble{\faCheck}{labelcolour}{cvblue}{Adobe Suite}{Proficiency}
+\infobubble{\faCheck}{labelcolour}{cvblue}{Creative}{Strategy}
+\infobubble{\faCheck}{labelcolour}{cvblue}{Audio}{Engineering}
+% \infobubble{\faCheck}{labelcolour}{cvblue}{Pro Tools}{Proficiency}
+\end{minipage}\\[1.0em]
+
+\vspace{2em}
+
+\phantom{turn the page}
+
+\phantom{turn the page}
+%----------------------------------------------------------------------------------------
+%	PAGE 2 MAIN
+%----------------------------------------------------------------------------------------
+\switchcolumn
+\small
+\section*{Work Experience}
+\begin{tabular}{r!{\hspace{2mm}\color{titlerulecolour}\vrule width 1pt\hspace{1mm}} p{0.5\textwidth} c}
+    \include{Jobs/TMU NSERC RA}\\
+    \include{Jobs/TMU RA}\vspace{-1em}
+\end{tabular}
+\vspace{1em}
+
+\section*{Open-Source Contributions}
+\begin{tabular}{r!{\hspace{2mm}\color{titlerulecolour}\vrule width 1pt\hspace{1mm}} p{0.5\textwidth} c}
+    \include{Projects/Next.js eCommerce}\vspace{-3em}
+\end{tabular}
+\vspace{1em}
+
+\end{paracol}
+
+%----------------------------------------------------------------------------------------
+%	PAGE 2 FOOTER
+%----------------------------------------------------------------------------------------
+\vfill{} % Whitespace before final footer
+\setlength{\parindent}{0pt}
+\centering
+\begin{minipage}[t]{\textwidth}
+    \begin{center}\fontfamily{\sfdefault}\selectfont \color{black!70}
+    {\small \myName \icon{\faEnvelopeO}{cvblue}{} \myJob \icon{\faMapMarker}{cvblue}{} \myLocation \icon{\faPhone}{cvblue}{} \myNumber \icon{\faAt}{cvblue}{} \protect\url{\myEmail}
+    }
+    \end{center}
+\end{minipage}
+
+%----------------------------------------------------------------------------------------
+%	PAGE 3 HEADER
+%----------------------------------------------------------------------------------------
+\newpage
+\section*{Page 3}
+
+\simpleheader{headercolour}{headerfontcolour}{headerbarcolour}{\myFirstName}{\myLastName}{\myRoles}
+
+%----------------------------------------------------------------------------- COLUMN DEFINITION
+% this has to be here so the paracols starts..
+\subsection*{}
+\vspace{3.5em}
+
+\setlength{\columnsep}{1.0cm}
+\columnratio{0.25}[0.75]
+\begin{paracol}{2}
+
+%----------------------------------------------------------------------------------------
+%	PAGE 3 SIDE BAR
+%----------------------------------------------------------------------------------------
+\flushleft
+\footnotesize
+
+% ---------------------------------------------- Presentations
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Presentations}
+\infobubble{\faPaperclip}{labelcolour}{cvblue}{Complex Systems Day}{2025}
+\infobubble{\faPaperclip}{labelcolour}{cvblue}{Complex Systems Day}{2024}
+\infobubble{\faPaperclip}{labelcolour}{cvblue}{2024 CAP Congress}{2024}
+\infobubble{\faPaperclip}{labelcolour}{cvblue}{Complex Systems Day}{2023}
+\infobubble{\faPaperclip}{labelcolour}{cvblue}{APS March Meeting}{2023}
+\infobubble{\faPaperclip}{labelcolour}{cvblue}{Complex Systems}{Day 2022}
+\infobubble{\faPaperclip}{labelcolour}{cvblue}{CUPC}{2021}
+\end{minipage}\\[1.0em]
+
+% ---------------------------------------------- Committees
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Boards}
+\infobubble{\faUsers}{labelcolour}{cvblue}{VP of Finance}{PGSU • 2024}
+\end{minipage}\\[1.0em]
+
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Mentoring}
+\infobubble{\faChild}{labelcolour}{cvblue}{Secondary School}{Rowing Coach 2013}
+\infobubble{\faChild}{labelcolour}{cvblue}{Secondary School}{Rowing Coach 2012}
+\end{minipage}\\[1.0em]
+
+% ---------------------------------------------- Keywords
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Specializations}
+\textbf{Artificial Intelligence} ~•~ Machine Learning ~•~ Adversarial Learning ~•~ \textbf{LLM Integration} ~•~ PyTorch ~•~ Data Sanitation ~•~ \textbf{Data Analysis} ~•~ Software Development ~•~ Computational Modeling ~•~ Python ~•~ Numpy ~•~ Pandas ~•~ Postgres ~•~ MySQL ~•~ \textbf{React} ~•~ NextJs ~•~ Ecommerce ~•~ Stripe ~•~ Adobe ~•~ Microsoft Office ~•~ Neovim
+\end{minipage}
+\vspace{4em}
+
+\phantom{turn the page}
+
+\phantom{turn the page}
+%----------------------------------------------------------------------------------------
+%	PAGE 3 MAIN
+%----------------------------------------------------------------------------------------
+\switchcolumn
+\small
+\section*{Papers}
+\begin{tabular}{r!{\hspace{2mm}\color{titlerulecolour}\vrule width 1pt\hspace{1mm}} p{0.5\textwidth} c}
+    \include{Papers/Mitochondrial network branching enables rapid protein spread}\\
+    \include{Papers/U-Network Defense}\\
+    \include{Papers/M-Stochastic Defense}\\
+    \include{Papers/Universality in Betting Markets}\\
+    \include{Papers/COVID Mobility Patterns}\vspace{-1em}
+\end{tabular}
+
+\section*{Projects}
+\begin{tabular}{r!{\hspace{2mm}\color{titlerulecolour}\vrule width 1pt\hspace{1mm}} p{0.5\textwidth} c}
+    \include{Projects/LaTeX Template}\\
+    \include{Projects/Scientific Computing Installation}\vspace{-3em}
+\end{tabular}
+\vspace{1em}
+
+\end{paracol}
+
+%----------------------------------------------------------------------------------------
+%	PAGE 3 FOOTER
+%----------------------------------------------------------------------------------------
+\vfill{} % Whitespace before final footer
+\setlength{\parindent}{0pt}
+\centering
+\begin{minipage}[t]{\textwidth}
+    \begin{center}\fontfamily{\sfdefault}\selectfont \color{black!70}
+    {\small \myName \icon{\faEnvelopeO}{cvblue}{} \myJob \icon{\faMapMarker}{cvblue}{} \myLocation \icon{\faPhone}{cvblue}{} \myNumber \icon{\faAt}{cvblue}{} \protect\url{\myEmail}
+    }
+\end{center}
+\end{minipage}
+
+%----------------------------------------------------------------------------------------
+%	PAGE 4 HEADER
+%----------------------------------------------------------------------------------------
+\newpage
+\section*{Page 4}
+
+\simpleheader{headercolour}{headerfontcolour}{headerbarcolour}{\myFirstName}{\myLastName}{\myRoles}
+
+%----------------------------------------------------------------------------- COLUMN DEFINITION
+% this has to be here so the paracols starts..
+\subsection*{}
+\vspace{3.5em}
+
+\setlength{\columnsep}{1.0cm}
+\columnratio{0.25}[0.75]
+\begin{paracol}{2}
+
+%----------------------------------------------------------------------------------------
+%	PAGE 4 SIDE BAR
+%----------------------------------------------------------------------------------------
+\flushleft
+\footnotesize
+
+% ---------------------------------------------- Presentations
+\begin{minipage}[t]{0.22\textwidth}
+\section*{Audio Engineering}
+\href{https://open.spotify.com/album/295raaeMZICsVGMHPDbKah}{%
+\infobubble{\faMusic}{labelcolour}{cvblue}{Weird Karma}{Album • 2021}
+}\\
+\href{https://open.spotify.com/album/1ATokMJ6d2kYhJPVXswouO}{%
+\infobubble{\faMusic}{labelcolour}{cvblue}{Summer Drive}{Album • 2019}
+}\\
+\href{https://open.spotify.com/album/5vJQf2BJHETTVydEFsEc5J}{%
+\infobubble{\faMusic}{labelcolour}{cvblue}{7 Months Back}{Album • 2019}
+}\\
+\href{https://open.spotify.com/album/2qM5yjAmrnlyjweogio4ny}{%
+\infobubble{\faMusic}{labelcolour}{cvblue}{bellwoodsonmars}{Album • 2019}
+}\\
+\href{https://polarismusicprize.ca/album/999/}{%
+\infobubble{\faMusic}{labelcolour}{cvblue}{999}{Album • 2019}
+}\\
+\href{https://open.spotify.com/album/3alO2r7mGfuIFniJwMw6LV}{%
+\infobubble{\faMusic}{labelcolour}{cvblue}{121}{Album • 2018}
+}\\
+\href{https://chronophobeband.bandcamp.com/album/nah-its-fine-man}{%
+\infobubble{\faMusic}{labelcolour}{cvblue}{nah it's fine, man.}{Album • 2017}
+}\\
+\href{https://www.tvo.org/video/little-red}{%
+\infobubble{\faMusic}{labelcolour}{cvblue}{Little Red Documentary}{TVO • 2017}
+}\\[0.5em]
+\end{minipage}\\[1.0em]
+
+\phantom{turn the page}
+
+\phantom{turn the page}
+%----------------------------------------------------------------------------------------
+%	PAGE 4 MAIN
+%----------------------------------------------------------------------------------------
+\switchcolumn
+\small
+\section*{Data Analyst}
+\begin{tabular}{r!{\hspace{2mm}\color{titlerulecolour}\vrule width 1pt\hspace{1mm}} p{0.5\textwidth} c}
+    \include{Papers/Youth Round Table.tex}\\
+    \include{Papers/Diverse Youth.tex}\vspace{-1em}
+\end{tabular}
+\vspace{1em}
+
+\end{paracol}
+
+%----------------------------------------------------------------------------------------
+%	PAGE 4 FOOTER
+%----------------------------------------------------------------------------------------
+\vfill{} % Whitespace before final footer
+\setlength{\parindent}{0pt}
+\centering
+\begin{minipage}[t]{\textwidth}
+    \begin{center}\fontfamily{\sfdefault}\selectfont \color{black!70}
+    {\small \myName \icon{\faEnvelopeO}{cvblue}{} \myJob \icon{\faMapMarker}{cvblue}{} \myLocation \icon{\faPhone}{cvblue}{} \myNumber \icon{\faAt}{cvblue}{} \protect\url{\myEmail}
+    }
+\end{center}
+\end{minipage}
+
+\end{document}

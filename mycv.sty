@@ -1,6 +1,4 @@
-
 \usepackage[T1]{fontenc}
-\usepackage{amsmath}
 
 \usepackage{fontawesome}
 \usepackage{hyperref}
@@ -12,6 +10,7 @@
 \usepackage{tikz-3dplot}
 \usepackage{smartdiagram}
 \usepackage{float}
+\usepackage{amsmath}
 
 \usepackage{array}
 %\setlength\extrarowheight{1.5em} % adds some spacing between the lines of the CV's tabulars
@@ -41,6 +40,14 @@
 
 % avoid line overflow
 \setlength{\emergencystretch}{2pt}
+
+% Improved line spacing and typography
+\linespread{1.15} % Slightly increased line spacing for better readability
+\setlength{\parskip}{0.35em} % Better paragraph spacing
+
+% Optimize itemize spacing for better readability
+\usepackage{enumitem}
+\setlist[itemize]{topsep=0.3em, partopsep=0em, itemsep=0.15em, parsep=0em, leftmargin=1.2em}
 %---------------------------------------------------------------------------------
 
 \usepackage{titlesec} % Allows creating custom \sections
@@ -48,7 +55,7 @@
 % Format of the section titles
 \titleformat{\section}{
 \scshape\Large\raggedright}{}{0em}{}[\color{titlerulecolour}{\titlerule[1.5pt]}] % smallcaps, Large, continuous line - looks better if two columns, might look a bit too dramatic if just one ;)
-\titlespacing{\section}{0pt}{12pt}{8pt} % Spacing around titles {<left spacing>}{<before spacing>}{<after spacing>}
+\titlespacing{\section}{0pt}{16pt}{12pt} % Spacing around titles {<left spacing>}{<before spacing>}{<after spacing>} - increased for better hierarchy
 %----------------------------------------------------
 
  \newcommand{\cvkeyword}[3]{
@@ -121,7 +128,15 @@
 
 %----------------------------------------------------------------------------- pictoFraction
 
-\newcommand{\icon}[3]{\phantom{x}{#3\color{#2}#1}\phantom{x}}
+\newcommand{\icon}[3]{%
+\ifats
+    % ATS mode - remove decorative icons from footer
+    \phantom{x}\phantom{x}%
+\else
+    % Regular mode - show icons
+    \phantom{x}{#3\color{#2}#1}\phantom{x}%
+\fi
+}
 
 %------------------------------------------------------------------ pictogram Fraction: pictoFraction
 
@@ -132,8 +147,24 @@
 
 %----------------------------------------------------- font highlighting / boxes with background color
 
-\newcommand{\bg}[3]{\colorbox{#1}{\bfseries\color{#2}#3}}
-\newcommand{\bgupper}[3]{\colorbox{#1}{\color{#2}\huge\bfseries\MakeUppercase{#3}}}
+\newcommand{\bg}[3]{%
+\ifats
+    % ATS mode - simple bold text without background colors
+    \textbf{#3}%
+\else
+    % Regular mode - colored background boxes
+    \colorbox{#1}{\bfseries\color{#2}#3}%
+\fi
+}
+\newcommand{\bgupper}[3]{%
+\ifats
+    % ATS mode - simple uppercase bold text
+    \textbf{\MakeUppercase{#3}}%
+\else
+    % Regular mode - colored background with large font
+    \colorbox{#1}{\color{#2}\huge\bfseries\MakeUppercase{#3}}%
+\fi
+}
 
 %----------------------------------------------------------------------------- Bubble Diagram
 
@@ -170,37 +201,43 @@
 } % startpunkt #1. Farbe #2, Detaildatum #3, Beschreibung #4, Entfernung von Timeline #5
 }
 
-\newcommand{\barrule}[3]{\hspace{0.5em}
-{\color{#3}\rule[\baselineskip]{#1\textwidth}{#2}}\vspace{0.5em}
+\newcommand{\barrule}[3]{%
+\ifats
+    % ATS mode - just show appropriate spacing without bullet
+    \hspace{0.5em}\vspace{0.3em}%
+\else
+    % Regular mode - show skill bars
+    \hspace{0.5em}{\color{#3}\rule[\baselineskip]{#1\textwidth}{#2}}\vspace{0.5em}%
+\fi
 }
 
 \newcommand{\cvevent}[6]{%
     \parbox[t]{1.2cm}{\raggedright #1} % First column with fixed width and text forced to multiple lines
-    & \textbf{#2}\vspace{0.25em}\newline\textsc{#3} $\cdot$ {#4 ~\faMapMarker}\newline{\color{black!70}\footnotesize #5}\vspace{1.5em} % Second column
-    & \raisebox{-0.7\height}{\includegraphics[height=1cm]{Images/#6}} % Third column
+    & \textbf{#2}\vspace{0.4em}\newline\textsc{#3} $\cdot$ {#4 ~\ifats\else\faMapMarker\fi}\newline{\color{black!70}\footnotesize #5}\vspace{1.8em} % Second column - improved spacing
+    & \ifats\else\raisebox{-0.7\height}{\includegraphics[height=1cm]{Images/#6}}\fi % Third column - hide image in ATS mode
 }
 
 \newcommand{\cveventwide}[6]{%
     \parbox[t]{1.2cm}{\raggedright #1} % First column with fixed width and text forced to multiple lines
-    & \textbf{#2}\vspace{0.25em}\newline\textsc{#3} $\cdot$ {#4 ~\faMapMarker}\newline{\color{black!70}\footnotesize #5}\vspace{1.5em} % Second column
-    & \raisebox{-0.7\height}{\includegraphics[width=1.5cm]{Images/#6}} % Third column
+    & \textbf{#2}\vspace{0.4em}\newline\textsc{#3} $\cdot$ {#4 ~\ifats\else\faMapMarker\fi}\newline{\color{black!70}\footnotesize #5}\vspace{1.8em} % Second column - improved spacing
+    & \ifats\else\raisebox{-0.7\height}{\includegraphics[width=1.5cm]{Images/#6}}\fi % Third column - hide image in ATS mode
 }
 
 \newcommand{\cvlinkevent}[7]{%
     \parbox[t]{1.2cm}{\raggedright #1} % First column with fixed width and text forced to multiple lines
-    & \textbf{#2}\vspace{0.25em}\newline{#3}\newline\textsc{#4} $\cdot$ {#5 ~\faMapMarker}\newline{\color{black!70}\footnotesize #6}\vspace{1.5em} % Second column
-    & \raisebox{-0.7\height}{\includegraphics[height=1cm]{Images/#7}} % Third column
+    & \textbf{#2}\vspace{0.25em}\newline{#3}\newline\textsc{#4} $\cdot$ {#5 ~\ifats\else\faMapMarker\fi}\newline{\color{black!70}\footnotesize #6}\vspace{1.5em} % Second column
+    & \ifats\else\raisebox{-0.7\height}{\includegraphics[height=1cm]{Images/#7}}\fi % Third column - hide image in ATS mode
 }
 
 \newcommand{\cvelinkventwide}[7]{%
     \parbox[t]{1.2cm}{\raggedright #1} % First column with fixed width and text forced to multiple lines
-    & \textbf{#2}\vspace{0.25em}\newline{#3}\newline\textsc{#4} $\cdot$ {#5 ~\faMapMarker}\newline{\color{black!70}\footnotesize #6}\vspace{1.5em} % Second column
-    & \raisebox{-0.7\height}{\includegraphics[width=1.5cm]{Images/#7}} % Third column
+    & \textbf{#2}\vspace{0.25em}\newline{#3}\newline\textsc{#4} $\cdot$ {#5 ~\ifats\else\faMapMarker\fi}\newline{\color{black!70}\footnotesize #6}\vspace{1.5em} % Second column
+    & \ifats\else\raisebox{-0.7\height}{\includegraphics[width=1.5cm]{Images/#7}}\fi % Third column - hide image in ATS mode
 }
 
 \newcommand{\cvdegree}[6]{{#1} & \textbf{#2}\newline\textsc{#3} $\cdot$ {#4 {\phantom{i}\footnotesize ~\faUniversity}}\newline{\color{black!70}\scriptsize #5}\vspace{0.5em} & \raisebox{-0.7\height}{\includegraphics[height=0.5cm]{#6}}}
 
-\newcommand{\cvdegreesm}[6]{{#1} & \textbf{#2}\newline\textsc{#3} $\cdot$ \textsc{#4} {\newline #5 {\phantom{i}\footnotesize ~\faUniversity}}\newline{\color{black!70}\scriptsize #6}\vspace{0.5em}}
+\newcommand{\cvdegreesm}[6]{{#1} & \textbf{#2}\newline\textsc{#3} $\cdot$ \textsc{#4} {\newline #5 {\phantom{i}\footnotesize ~\ifats\else\faUniversity\fi}}\newline{\color{black!70}\scriptsize #6}\vspace{0.5em}}
 
 
 
@@ -209,31 +246,59 @@
 
 % ----------------------------------------------------------------------------------- HEADERS
 
-\newcommand{\simpleheader}[6]{
-\tikz[remember picture,overlay] {%
-% Shift the header position up by adjusting the yshift value
-\node[rectangle, fill=#1, anchor=north, minimum width=\paperwidth, minimum height=4.0cm, yshift=0.5cm] (header) at (current page.north) {};%
-\node[draw=none, align=left] (name) at (header) {%
-{\Huge \color{#2} #4 \textbf{#5} }%
-};%
-\node[draw=none, below, yshift=-0.4cm] (titles) at (name.south) {\color{#2}#6};%
-}\vspace{-0.7cm}%
+\newcommand{\simpleheader}[6]{%
+\ifats
+    % ATS mode - simple text header without graphics
+    \begin{center}
+    {\Huge #4 \textbf{#5}}\\[0.8em]
+    {\normalsize #6}
+    \end{center}
+    \vspace{-3.0em}%
+\else
+    % Regular mode - full TikZ header
+    \tikz[remember picture,overlay] {%
+    % Shift the header position up by adjusting the yshift value
+    \node[rectangle, fill=#1, anchor=north, minimum width=\paperwidth, minimum height=4.2cm, yshift=0.6cm] (header) at (current page.north) {};%
+    \node[draw=none, align=left] (name) at (header) {%
+    {\Huge \color{#2} #4 \textbf{#5} }%
+    };%
+    \node[draw=none, below, yshift=-0.5cm] (titles) at (name.south) {\color{#2}#6};%
+    }\vspace{-0.5cm}%
+\fi
 }
 
-\newcommand{\descriptiveheader}[7]{
-\tikz[remember picture,overlay] {%
-% Shift the header position up by adjusting the yshift value
-\node[rectangle, fill=#1, anchor=north, minimum width=\paperwidth, minimum height=9.4cm, yshift=3.5cm] (header) at (current page.north) {};%
-\node[draw=none, align=left] (name) at (header) {%
-{\Huge \color{#2} #4 \textbf{#5} }%
-};%
-\node[draw=none, below, yshift=-0.4cm] (titles) at (name.south) {\color{#2}#6};%
-% Draw the separator
-\draw[thick, #3] ($(titles.south west)+(4.4,-0.3)$) -- ($(titles.south east)+(-4.4,-0.3)$);%
-% Add the description
-\node[draw=none, below, align=center, text width=18cm, minimum height=2.5cm, yshift=0cm] (description) at ($(titles.south)+(0,-0.5)$) {\color{#2}#7};%
-\draw[thick, #3] ($(header.south west)+(0,0)$) -- ($(header.south east)+(0,0)$);
-}\vspace{1.8cm}%
+\newcommand{\descriptiveheader}[7]{%
+\ifats
+    % ATS mode - simple text header with description
+    \begin{center}
+    {\Huge #4 \textbf{#5}}\\[0.8em]
+    {\normalsize #6}\\[0.3em]
+    \rule{0.5\textwidth}{0.5pt}\\[0.3em]
+    \end{center}
+    \vspace{0.3em}
+    % Better formatted description paragraph
+    \begin{center}
+    \begin{minipage}{0.85\textwidth}
+    \normalsize #7
+    \end{minipage}
+    \end{center}
+    \vspace{-3.0em}%
+\else
+    % Regular mode - full TikZ header with graphics
+    \tikz[remember picture,overlay] {%
+    % Shift the header position up by adjusting the yshift value
+    \node[rectangle, fill=#1, anchor=north, minimum width=\paperwidth, minimum height=11.6cm, yshift=4.2cm] (header) at (current page.north) {};%
+    \node[draw=none, align=left] (name) at (header) {%
+    {\Huge \color{#2} #4 \textbf{#5} }%
+    };%
+    \node[draw=none, below, yshift=-0.5cm] (titles) at (name.south) {\color{#2}#6};%
+    % Draw the separator
+    \draw[thick, #3] ($(titles.south west)+(4.4,-0.4)$) -- ($(titles.south east)+(-4.4,-0.4)$);%
+    % Add the description with better text alignment
+    \node[draw=none, below, text width=16cm, minimum height=2.5cm, yshift=0cm] (description) at ($(titles.south)+(0,-0.6)$) {\color{#2}#7};%
+    \draw[thick, #3] ($(header.south west)+(0,0)$) -- ($(header.south east)+(0,0)$);
+    }\vspace{3.0cm}%
+\fi
 }
 
 
@@ -241,54 +306,192 @@
 
 % ORCid symbol
 \newcommand{\orcidbubble}[4]{%
-\scalebox{1.3}{%
-\begin{tikzpicture}
-\draw[#1, fill=#1] (0,0.16) circle (0.2 cm) node[#2] {\fontfamily{qag}\selectfont\tiny iD};
-% Check if the 5th argument is empty
-\ifx&#4&%
-    % If 4th argument is empty, place the 3rd as is
-    \node[right=0.2cm, align=left] at (0,0) {\text{#3}};
+\ifats
+    % ATS mode - keep ORCID identifier with proper line breaking
+    \ifx&#4&%
+        % If 4th argument is empty, show ORCID and 3rd
+        ORCID: #3%
+    \else
+        % If 4th argument is not empty, show with proper line breaks and alignment
+        \begin{minipage}[t]{\linewidth}
+        ORCID: #3\\
+        \phantom{ORCID: }#4%
+        \end{minipage}%
+    \fi
 \else
-    % If 4th argument is not empty, place the 3th and then the 4th below it
-    \node[right=0.2cm, align=left] at (0,0.15) {\text{#3}};
-    \node[right=0.2cm, align=left] at (0,-0.15) {\text{#4}};
+    % Regular mode - full visual design
+    \scalebox{1.3}{%
+    \begin{tikzpicture}
+    \draw[#1, fill=#1] (0,0.16) circle (0.2 cm) node[#2] {\fontfamily{qag}\selectfont\tiny iD};
+    % Check if the 5th argument is empty
+    \ifx&#4&%
+        % If 4th argument is empty, place the 3rd as is
+        \node[right=0.2cm, align=left] at (0,0.15) {#3};
+    \else
+        % If 4th argument is not empty, place the 3rd and then the 4th below it
+        \node[right=0.2cm, align=left] at (0,0.15) {#3};
+        \node[right=0.2cm, align=left] at (0,-0.15) {#4};
+    \fi
+    \end{tikzpicture}%
+    }%
 \fi
-\end{tikzpicture}%
-}%
 }
 
 \newcommand{\infobubble}[5]{%
-\scalebox{1.3}{%
-\begin{tikzpicture}
-\draw[draw=#2,fill=#2] (0,0) circle (0.2cm);
-\node[] at (0,0) {\color{#3}\textbf{#1}};
-% Check if the 5th argument is empty
-\ifx&#5&%
-    % If 5th argument is empty, place the 4th as is
-    \node[right=0.2cm, align=left] at (0,0) {\text{#4}};
+\ifats
+    % ATS mode - text only with bullet points on new lines
+    \ifx&#5&%
+        % If 5th argument is empty, show only 4th with bullet on new line
+        \begin{minipage}[t]{\linewidth}
+        $\bullet$ #4%
+        \end{minipage}%
+    \else
+        % If 5th argument is not empty, show both with bullet on new line
+        \begin{minipage}[t]{\linewidth}
+        $\bullet$ #4\\
+        \phantom{$\bullet$ }#5%
+        \end{minipage}%
+    \fi
 \else
-    % If 5th argument is not empty, place the 4th and then the 5th below it
-    \node[right=0.2cm, align=left] at (0,0.15) {\text{#4}};
-    \node[right=0.2cm, align=left] at (0,-0.15) {\text{#5}};
+    % Regular mode - full visual design
+    \scalebox{1.3}{%
+    \begin{tikzpicture}
+    \draw[draw=#2,fill=#2] (0,0) circle (0.2cm);
+    \node[] at (0,0) {\color{#3}\textbf{#1}};
+    % Check if the 5th argument is empty
+    \ifx&#5&%
+        % If 5th argument is empty, place the 4th as is
+        \node[right=0.2cm, align=left] at (0,0) {#4};
+    \else
+        % If 5th argument is not empty, place the 4th and then the 5th below it
+        \node[right=0.2cm, align=left] at (0,0.15) {#4};
+        \node[right=0.2cm, align=left] at (0,-0.15) {#5};
+    \fi
+    \end{tikzpicture}%
+    }%
 \fi
-\end{tikzpicture}%
-}%
+}
+
+% Specialized infobubble that keeps icons in ATS mode (for socials, publications, websites)
+\newcommand{\infobubbleicon}[5]{%
+\ifats
+    % ATS mode - keep icon but simplify layout with better spacing and alignment
+    \ifx&#5&%
+        % If 5th argument is empty, show icon and 4th with spacing
+        #1\hspace{1em}#4%
+    \else
+        % If 5th argument is not empty, show with proper line breaks and alignment
+        \begin{minipage}[t]{\linewidth}
+        #1\hspace{1em}#4\\
+        \phantom{#1\hspace{1em}}#5%
+        \end{minipage}%
+    \fi
+\else
+    % Regular mode - full visual design
+    \scalebox{1.3}{%
+    \begin{tikzpicture}
+    \draw[draw=#2,fill=#2] (0,0) circle (0.2cm);
+    \node[] at (0,0) {\color{#3}\textbf{#1}};
+    % Check if the 5th argument is empty
+    \ifx&#5&%
+        % If 5th argument is empty, place the 4th as is
+        \node[right=0.2cm, align=left] at (0,0) {#4};
+    \else
+        % If 5th argument is not empty, place the 4th and then the 5th below it
+        \node[right=0.2cm, align=left] at (0,0.15) {#4};
+        \node[right=0.2cm, align=left] at (0,-0.15) {#5};
+    \fi
+    \end{tikzpicture}%
+    }%
+\fi
+}
+
+% Programming section helper for ATS mode
+\newcommand{\progskill}[1]{%
+\ifats
+    % ATS mode - simple bulleted list
+    $\bullet$ \textbf{#1}%
+\else
+    % Regular mode - use tabular format (not used directly)
+    \textbf{#1}%
+\fi
+}
+
+% ATS helper command for better section formatting
+\newcommand{\atssection}[1]{%
+\ifats
+    % ATS mode - simple section headers
+    \vspace{0.5em}
+    \textbf{\MakeUppercase{#1}}
+    \vspace{0.3em}
+    \hrule
+    \vspace{0.3em}%
+\else
+    % Regular mode - use normal section
+    \section*{#1}%
+\fi
+}
+
+% Page number command that's hidden in ATS mode
+\newcommand{\pagenumber}[1]{%
+\ifats
+    % ATS mode - no page numbers
+\else
+    % Regular mode - show page numbers
+    \section*{Page #1}%
+\fi
+}
+
+% Page spacing helper for ATS
+\newcommand{\pagespacing}{%
+\ifats
+    % ATS mode - minimal spacing
+    \subsection*{}
+    \vspace{0.5em}%
+\else
+    % Regular mode - normal spacing for paracol layout
+    \subsection*{}
+    \vspace{3.8em}%
+\fi
+}
+
+% Left column font size helper for ATS
+\newcommand{\atsleftcolumnfont}{%
+\ifats
+    % ATS mode - larger font for better readability
+    \small%
+\else
+    % Regular mode - use footnotesize as originally set
+    \footnotesize%
+\fi
 }
 
 \newcommand{\infobubblesm}[5]{%
-\scalebox{1.0}{%
-\begin{tikzpicture}
-\draw[draw=#2,fill=#2] (0,0) circle (0.2cm);
-\node[] at (0,0) {\color{#3}\textbf{#1}};
-% Check if the 5th argument is empty
-\ifx&#5&%
-    % If 5th argument is empty, place the 4th as is
-    \node[right=0.2cm, align=left] at (0,0) {\text{#4}};
+\ifats
+    % ATS mode - text only with bullet points
+    \ifx&#5&%
+        % If 5th argument is empty, show only 4th with bullet
+        $\bullet$ #4%
+    \else
+        % If 5th argument is not empty, show both with bullet
+        $\bullet$ #4 #5%
+    \fi
 \else
-    % If 5th argument is not empty, place the 4th and then the 5th below it
-    \node[right=0.2cm, align=left] at (0,0.15) {\text{#4}};
-    \node[right=0.2cm, align=left] at (0,-0.15) {\text{#5}};
+    % Regular mode - full visual design
+    \scalebox{1.0}{%
+    \begin{tikzpicture}
+    \draw[draw=#2,fill=#2] (0,0) circle (0.2cm);
+    \node[] at (0,0) {\color{#3}\textbf{#1}};
+    % Check if the 5th argument is empty
+    \ifx&#5&%
+        % If 5th argument is empty, place the 4th as is
+        \node[right=0.2cm, align=left] at (0,0) {#4};
+    \else
+        % If 5th argument is not empty, place the 4th and then the 5th below it
+        \node[right=0.2cm, align=left] at (0,0.15) {#4};
+        \node[right=0.2cm, align=left] at (0,-0.15) {#5};
+    \fi
+    \end{tikzpicture}%
+    }%
 \fi
-\end{tikzpicture}%
-}%
 }

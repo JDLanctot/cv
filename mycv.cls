@@ -13,10 +13,10 @@
 
 % My colours
 \definecolor{cvorange}{HTML}{b3b3b3}
-\definecolor{cvgrey}{HTML}{b3b3b3}
 \definecolor{cvred}{HTML}{b3b3b3}
 \definecolor{cvgreen}{HTML}{4F81BD}
 \definecolor{cvblue}{HTML}{28415f}
+\definecolor{cvgrey}{HTML}{b3b3b3}
 
 % Columns Background Colour
 \newcommand{\paracolbackgroundoptions}{
@@ -51,6 +51,11 @@
 
 
 % ---------------------------------------------------------------------------
+% ATS-friendly option
+\newif\ifats
+\atsfalse
+\DeclareOption{ats}{\atstrue}
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 

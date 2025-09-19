@@ -87,11 +87,56 @@ All personal details are centralized in `myinfo.tex` including:
 - Academic profiles (Google Scholar, ORCID)
 - Cover letter variables
 
+## Agent Delegation Strategy
+
+When working on tasks in this LaTeX CV repository, always delegate specific aspects to the appropriate specialized agents:
+
+### latex-structure-expert
+Use this agent for:
+- Modifying LaTeX document structure, organization, or file hierarchy
+- Changes to `.cls` (class) or `.sty` (style) files
+- Creating new sections or reorganizing content structure
+- Package configurations and document organization
+- Structural changes to `main.tex`, `mycv.cls`, or `mycv.sty`
+
+**Example tasks**: "Reorganize experience into separate files", "Add new CV section", "Modify style file colors", "Create modular structure"
+
+### resume-content-optimizer
+Use this agent for:
+- Improving, refining, or rewriting content within existing `.tex` files
+- Enhancing job descriptions, project descriptions, or other content
+- Content quality improvements while preserving LaTeX structure
+- Optimizing content for specific roles or industries
+
+**Example tasks**: "Improve job descriptions in Jobs/", "Enhance project descriptions", "Optimize content for data science role"
+
+### latex-graph-designer
+Use this agent for:
+- Spacing and layout optimization (margins, padding, alignment)
+- Typography hierarchy improvements (font sizes, weights, line spacing)
+- Visual element positioning and flow
+- White space utilization and document balance
+- Layout consistency across pages
+
+**IMPORTANT RESTRICTIONS**:
+- DO NOT modify colors, color schemes, or color definitions
+- DO NOT add backgrounds, borders, or decorative elements
+- DO NOT change existing visual styling (infobubbles, skill bars, icons)
+- FOCUS ONLY on spacing, positioning, and typography hierarchy
+
+**Example tasks**: "Improve spacing and alignment", "Optimize typography hierarchy", "Enhance layout flow", "Better white space usage"
+
+### Task Delegation Guidelines
+1. **Always identify** which aspects of a task require which agents
+2. **Use multiple agents concurrently** when tasks have multiple aspects
+3. **Be specific** about what each agent should focus on
+4. **Coordinate results** from different agents for cohesive outcomes
+
 ## Customization
 To modify the CV:
 1. Update personal info in `myinfo.tex`
-2. Add/edit job entries in `Jobs/` directory
-3. Add/edit publications in `Papers/` directory
-4. Add/edit projects in `Projects/` directory
-5. Modify styling/colors in `mycv.sty` or `mycv.cls`
+2. Add/edit job entries in `Jobs/` directory (use **resume-content-optimizer** for content improvements)
+3. Add/edit publications in `Papers/` directory (use **resume-content-optimizer** for content improvements)
+4. Add/edit projects in `Projects/` directory (use **resume-content-optimizer** for content improvements)
+5. Modify styling/colors in `mycv.sty` or `mycv.cls` (use **latex-structure-expert** for structural changes, **latex-graph-designer** for visual improvements)
 6. Recompile `main.tex` to generate updated PDF

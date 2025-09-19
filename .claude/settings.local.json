@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(tectonic:*)"
+      "Bash(tectonic:*)",
+      "Bash(\"C:\\Program Files\\Tectonic\\tectonic.exe\" main.tex)",
+      "Bash(\"C:\\Program Files\\Tectonic\\tectonic.exe\" main-ats.tex)",
+      "Bash(\"C:\\Program Files\\Tectonic\\tectonic.exe\" main-ats-full.tex)",
+      "Bash(del:*)"
     ],
     "deny": [],
     "ask": []

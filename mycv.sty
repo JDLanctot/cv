@@ -311,12 +311,14 @@
     \ifx&#4&%
         % If 4th argument is empty, show ORCID and 3rd
         ORCID: #3%
+        \vspace{0.3em}% Consistent spacing with infobubbleicon in ATS mode
     \else
         % If 4th argument is not empty, show with proper line breaks and alignment
         \begin{minipage}[t]{\linewidth}
         ORCID: #3\\
         \phantom{ORCID: }#4%
         \end{minipage}%
+        \vspace{0.3em}% Consistent spacing with infobubbleicon in ATS mode
     \fi
 \else
     % Regular mode - full visual design
@@ -343,14 +345,17 @@
     \ifx&#5&%
         % If 5th argument is empty, show only 4th with bullet on new line
         \begin{minipage}[t]{\linewidth}
-        $\bullet$ #4%
+        $\bullet$ #4\\
         \end{minipage}%
+        \vspace{0.8em}% Increased spacing between infobubbles in ATS mode
     \else
         % If 5th argument is not empty, show both with bullet on new line
         \begin{minipage}[t]{\linewidth}
-        $\bullet$ #4\\
+        \setlength{\baselineskip}{0.85\baselineskip}% Reduced internal line spacing in ATS mode
+        $\bullet$ #4\\[-0.2em]% Reduced spacing between lines within infobubble
         \phantom{$\bullet$ }#5%
         \end{minipage}%
+        \vspace{0.8em}% Increased spacing between infobubbles in ATS mode
     \fi
 \else
     % Regular mode - full visual design
@@ -377,14 +382,17 @@
 \ifats
     % ATS mode - keep icon but simplify layout with better spacing and alignment
     \ifx&#5&%
-        % If 5th argument is empty, show icon and 4th with spacing
+        % If 5th argument is empty, show icon and 4th with reduced spacing for left column sections
         #1\hspace{1em}#4%
+        \vspace{0.3em}% Reduced spacing for icon sections to avoid double spacing from manual spacing
     \else
         % If 5th argument is not empty, show with proper line breaks and alignment
         \begin{minipage}[t]{\linewidth}
-        #1\hspace{1em}#4\\
+        \setlength{\baselineskip}{0.85\baselineskip}% Reduced internal line spacing in ATS mode
+        #1\hspace{1em}#4\\[-0.2em]% Reduced spacing between lines within infobubble
         \phantom{#1\hspace{1em}}#5%
         \end{minipage}%
+        \vspace{0.3em}% Reduced spacing for icon sections to avoid double spacing from manual spacing
     \fi
 \else
     % Regular mode - full visual design

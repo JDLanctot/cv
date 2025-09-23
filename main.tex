@@ -32,12 +32,11 @@
 % \section*{Cover Letter}
 \simpleheader{headercolour}{headerfontcolour}{headerbarcolour}{\myFirstName}{\myLastName}{\myRoles}
 
-% \include{Cover Letter/coverletterinfo}
 \vspace{10.0em}
 \centering
 \begin{minipage}[t]{\rightcolwidth}
     \fontfamily{\sfdefault}\selectfont
-    \input{Cover Letter/Cover Letter}
+    \input{Cover Letter/Academic Cover Letter}
 \end{minipage}
 
 \vfill{} % Whitespace before final footer
@@ -193,7 +192,7 @@
 % ---------------------------------------------- Awards
 \begin{minipage}[t]{0.24\textwidth}
 \section*{Supervision}
-\infobubble{\faUsers}{labelcolour}{cvblue}{2 x Summer Research}{Assistant • 2025}\\[0.4em]
+\infobubble{\faUsers}{labelcolour}{cvblue}{2 x Summer Research}{Assistant • 2025}
 \infobubble{\faChild}{labelcolour}{cvblue}{Undergraduate Thesis}{Student • 2024-2025}
 \end{minipage}\\[1.2em]
 
@@ -229,14 +228,14 @@
 \else
 % Regular mode - tabular format with skill bars
 \begin{tabular}{r @{\hspace{0.5em}}l}
-    \bg{skilllabelcolour}{skilliconcolour}{Python} & \barrule{0.5}{0.5em}{cvblue} \\
-    \bg{skilllabelcolour}{skilliconcolour}{\LaTeX} & \barrule{0.48}{0.5em}{cvgrey} \\
-    \bg{skilllabelcolour}{skilliconcolour}{TypeScript} & \barrule{0.45}{0.5em}{cvgrey} \\
-    \bg{skilllabelcolour}{skilliconcolour}{Julia} & \barrule{0.42}{0.5em}{cvgrey} \\
-    \bg{skilllabelcolour}{skilliconcolour}{MATLAB} & \barrule{0.38}{0.5em}{cvgrey} \\
-    \bg{skilllabelcolour}{skilliconcolour}{html, css} & \barrule{0.36}{0.5em}{cvgrey} \\
-    \bg{skilllabelcolour}{skilliconcolour}{PHP, SQL} & \barrule{0.24}{0.5em}{cvgrey} \\
-    \bg{skilllabelcolour}{skilliconcolour}{Lua} & \barrule{0.16}{0.5em}{cvgrey} \\
+    \bg{skilllabelcolour}{skilliconcolour}{Python} & \barrule{0.5}{0.5em}{cvblue}
+    \bg{skilllabelcolour}{skilliconcolour}{\LaTeX} & \barrule{0.48}{0.5em}{cvgrey}
+    \bg{skilllabelcolour}{skilliconcolour}{TypeScript} & \barrule{0.45}{0.5em}{cvgrey}
+    \bg{skilllabelcolour}{skilliconcolour}{Julia} & \barrule{0.42}{0.5em}{cvgrey}
+    \bg{skilllabelcolour}{skilliconcolour}{MATLAB} & \barrule{0.38}{0.5em}{cvgrey}
+    \bg{skilllabelcolour}{skilliconcolour}{html, css} & \barrule{0.36}{0.5em}{cvgrey}
+    \bg{skilllabelcolour}{skilliconcolour}{PHP, SQL} & \barrule{0.24}{0.5em}{cvgrey}
+    \bg{skilllabelcolour}{skilliconcolour}{Lua} & \barrule{0.16}{0.5em}{cvgrey}
     \bg{skilllabelcolour}{skilliconcolour}{Java} & \barrule{0.1}{0.5em}{cvgrey}
 \end{tabular}
 \fi

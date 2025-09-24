@@ -1,0 +1,53 @@
+
+%, a mashup of hipstercv, friggeri and twenty cv with improved organization
+% https://www.overleaf.com/latex/templates/simple-hipster-cv/cnpkkjdkyhhw
+% https://www.latextemplates.com/template/twenty-seconds-resumecv
+% https://www.latextemplates.com/template/friggeri-resume-cv
+
+\documentclass[ats, jdlanctot]{mycv}
+% \usepackage[utf8]{inputenc}
+% \usepackage[default]{raleway}
+% Native are: formula, fragment, neuemontreal, rightsans, telegraf
+\usepackage[telegraf,headings-telegraf]{fonts/myfonts}
+\usepackage[margin=1cm, a4paper]{geometry}
+
+%------------------------------------------------------------------------------ Variablen
+\newlength{\rightcolwidth}
+\newlength{\leftcolwidth}
+\setlength{\leftcolwidth}{0.24\textwidth}
+\setlength{\rightcolwidth}{0.76\textwidth}
+
+%------------------------------------------------------------------------------ TITLE (DOESNT APPEAR)
+\title{CV}
+\author{\LaTeX{} Jordan Lanctot}
+\date{}
+\pagestyle{empty}
+\begin{document}
+\thispagestyle{empty}
+
+\include{myinfo}
+
+%----------------------------------------------------------------------------------------
+%	Cover Letter Comment out if you want.
+%----------------------------------------------------------------------------------------
+% \section*{Cover Letter}
+\simpleheader{headercolour}{headerfontcolour}{headerbarcolour}{\myFirstName}{\myLastName}{\myRoles}
+
+\vspace{4.0em}
+\centering
+\begin{minipage}[t]{0.90\textwidth}
+    \fontfamily{\sfdefault}\selectfont
+    \input{Cover Letter/Reflections}
+\end{minipage}
+
+\vfill{} % Whitespace before final footer
+\setlength{\parindent}{0pt}
+\centering
+\begin{minipage}[t]{\textwidth}
+    \begin{center}\fontfamily{\sfdefault}\selectfont \color{black!70}
+    {\small \myName \icon{\faEnvelopeO}{cvblue}{} \myJob \icon{\faMapMarker}{cvblue}{} \myLocation \icon{\faPhone}{cvblue}{} \myNumber \icon{\faAt}{cvblue}{} \protect\url{\myEmail}
+    }
+    \end{center}
+\end{minipage}
+
+\end{document}
